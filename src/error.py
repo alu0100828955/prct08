@@ -1,0 +1,34 @@
+#! /usr/bin/python
+#! encoding: UTF-8
+pi= 3.1415926535897931159979634685441852
+import modulo
+def error(nro_intervalos,nro_test,umbral):
+  fallos=0
+  for i in range (nro_test):
+    apri=modulo.aproxpi(nro_intervalos)
+    if (abs(apri-pi)>=umbral):
+      print "El error no está permitido"
+      a=abs(apri-pi)
+      fallos= fallos+1
+  porc_fallos=(fallos*100)/nro_test
+  return porc_fallos
+  
+if __name__ == "__main__":
+  import sys
+  if(len(sys.argv)==4):
+     nro_intervalos=int(sys.argv[1])
+     nro_test=int(sys.argv[2])
+     umbral=float(sys.argv[3])
+     
+  else:
+    print "Debe introducir los tres parametros: el numero de intervalos que desea y el numero de veces que desea que se repita y el umbral de tolerancia. Si no lo hace se hará con los valores por defectos 4 4 y 0.001"
+    nro_intervalos=4
+    nro_test=4
+    umbral=0.1
+  
+  err=error(nro_intervalos,nro_test,umbral)
+  print "El porcentaje de error es: %4.2f" %err
+
+
+  
+
